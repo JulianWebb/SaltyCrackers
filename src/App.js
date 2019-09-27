@@ -15,15 +15,16 @@ class App extends React.Component {
     this.updateTranscript = this.updateTranscript.bind(this);
   }
 
-  updateTranscript(trans) {
+  updateTranscript(transcript) {
     this.setState({
-      transcript: trans
+      transcript: transcript
     })
   }
+  
   render() {
     return (
       <div className="App">
-        <FormBase transcript={this.updateTranscript} />
+        <FormBase updateTranscript={this.updateTranscript} />
         <DisplayBox value={this.state.transcript} />
       </div>
     );

@@ -18,8 +18,11 @@ class Character extends React.Component {
             }]
         }
 
+        this.actionsData = [];
+
         this.addAction = this.addAction.bind(this);
         this.removeAction = this.removeAction.bind(this);
+        this.upwards = this.upwards.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -45,9 +48,19 @@ class Character extends React.Component {
         }
     }
 
+    upwards(num, data) {
+        this.actionsData[num] = data;
+    }
+
     handleChange(e) {
         let name = e.target.name
         this.setState({ [name]: e.target.value})
+        this.props.upwards(this.props.num, {
+            character: this.state.character,
+            form: this.state.form,
+            description: this.state.description,
+            actions: this.actionsData
+        })
     }
 
     render() {
@@ -65,7 +78,7 @@ class Character extends React.Component {
                 </label>
                 <div id={`panel${this.props.panel}-character${this.props.num}-actions`} className="actions">
                     {this.state.actions.map(action => {
-                        return (<Action panel={action.panel} character={action.character} num={action.num} />);
+                        return (<Action panel={action.panel} character={action.character} num={action.num} upwards={this.upwards} />);
                     })}
                 </div>
                 <div id={`panel${this.props.panel}-character${this.props.num}-controls`} className="controls">

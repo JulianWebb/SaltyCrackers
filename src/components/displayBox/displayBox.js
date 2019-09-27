@@ -4,7 +4,7 @@ import './displayBox.css';
 class DisplayBox extends React.Component {
     render() {
         return (
-            <textarea readonly="" value={this.props.value} />
+            <textarea readonly="" value={JSON.stringify(this.props.value)} />
         );
     }
 }

@@ -15,8 +15,11 @@ class FormBase extends React.Component {
             }]
         }
 
+        this.panelsData = []
+
         this.addPanel = this.addPanel.bind(this);
         this.removePanel = this.removePanel.bind(this);
+        this.upwards = this.upwards.bind(this);
         this.updateTranscript = this.updateTranscript.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -40,12 +43,26 @@ class FormBase extends React.Component {
         }
     }
 
+    upwards(num, data) {
+        this.panelsData[num] = data;
+    }
+
     updateTranscript() {
+        this.props.updateTranscript({
+            title: this.state.title,
+            date: this.state.date,
+            panels: this.panelsData
+        })
     }
 
     handleChange(e) {
         let name = e.target.name
         this.setState({ [name]: e.target.value})
+        this.props.updateTranscript({
+            title: this.state.title,
+            date: this.state.date,
+            panels: this.panelsData
+        })
     }
 
     render() {
@@ -61,7 +78,7 @@ class FormBase extends React.Component {
                     </label>
                     <div id={`panels`} className="panels">
                     {this.state.panels.map(panel => {
-                        return (<Panel num={panel.num} />);
+                        return (<Panel num={panel.num} upwards={this.upwards} />);
                     })}
                     </div>
                     <div id={`controls`} className="controls">

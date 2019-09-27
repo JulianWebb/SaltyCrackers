@@ -14,9 +14,15 @@ class Action extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
+
     handleChange(e) {
         let name = e.target.name
         this.setState({ [name]: e.target.value})
+        this.props.upwards(this.props.num, {
+            order: this.state.order,
+            type: this.state.type,
+            description: this.state.description
+        })
     }
 
     render () {

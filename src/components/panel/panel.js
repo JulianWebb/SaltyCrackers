@@ -17,8 +17,11 @@ class Panel extends React.Component {
             }]
         }
 
+        this.charactersData = []
+        
         this.addCharacter = this.addCharacter.bind(this);
         this.removeCharacter = this.removeCharacter.bind(this);
+        this.upwards = this.upwards.bind(this);
         this.handleChange = this.handleChange.bind(this);
 
     }
@@ -43,9 +46,19 @@ class Panel extends React.Component {
         }
     }
 
+    upwards(num, data) {
+        this.charactersData[num] = data;
+    }
+
     handleChange(e) {
         let name = e.target.name
         this.setState({ [name]: e.target.value})
+        this.props.upwards(this.props.num, {
+            location: this.state.location,
+            sublocation: this.state.sublocation,
+            description: this.state.description,
+            characters: this.charactersData
+        })
     }
 
     render() {
@@ -63,7 +76,7 @@ class Panel extends React.Component {
                 </label>
                 <div id={`panel${this.props.num}-chracters`} className="characters">
                     {this.state.characters.map(character => {
-                        return (<Character panel={character.panel} num={character.num} />);
+                        return (<Character panel={character.panel} num={character.num} upwards={this.upwards} />);
                     })}
                 </div>
                 <div id={`panel${this.props.num}-controls`} className="controls">
