@@ -1,0 +1,43 @@
+form {
+    width: max-content;
+    margin: 4px;
+}
+fieldset {
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset.transcript {
+    background-color: #baf4c8;
+}
+
+fieldset.panel {
+    background-color: #f4bae5;
+}
+
+fieldset.character {
+    background-color: #f0f4ba;
+}
+
+fieldset.action {
+    background-color: #bae7f4;
+    
+}
+
+legend {
+    background-color: #fff;
+    border: 1px solid #000;
+    margin: 2px;
+}
+
+label {
+    margin: 2px;
+}
+
+input[name="order"] {
+    width: 48px;
+}
+
+button {
+    margin: 4px;
+}

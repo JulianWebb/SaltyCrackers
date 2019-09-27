@@ -13,18 +13,6 @@ class Action extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
     }
-    
-    /*handleOrderChange(e) {
-        this.setState({ order: e.target.value});
-    }
-
-    handleTypeChange(e) {
-        this.setState({ type: e.target.value});
-    }
-
-    handleDescriptionChange(e) {
-        this.setState({ description: e.target.value});
-    }*/
 
     handleChange(e) {
         let name = e.target.name
@@ -33,11 +21,17 @@ class Action extends React.Component {
 
     render () {
         return (
-            <fieldset id={`panel${this.props.panel}-character${this.props.character}-action${this.props.num}`}>
-                <legend>{"Action ".concat(this.props.num)}</legend>
-                <label>Order: <input name="order" value={this.state.order} onChange={this.handleChange} type="text" /></label>
-                <label>Type: <input name="type" value={this.state.type} onChange={this.handleChange} type="text" /></label>
-                <label>Description: <textarea name="description" value={this.state.description} onChange={this.handleChange} /></label>
+            <fieldset id={`panel${this.props.panel}-character${this.props.character}-action${this.props.num}`} className="action">
+                <legend>Action</legend>
+                <label>Order: 
+                    <input name="order" value={this.state.order} onChange={this.handleChange} type="text" />
+                </label>
+                <label>Type: 
+                    <input name="type" value={this.state.type} onChange={this.handleChange} type="text" />
+                </label>
+                <label>Description: 
+                    <textarea name="description" value={this.state.description} onChange={this.handleChange} />
+                </label>
             </fieldset>
         );
     }
