@@ -70,7 +70,7 @@ class FormBase extends React.Component {
         return (
             <form onChange={this.handleChange}>
                 <fieldset id="transcript" className="transcript">
-                    <legend>Transcript: </legend>
+                    <legend>Transcript</legend>
                     <label>Title: 
                         <input name="title" value={this.state.title} onChange={this.handleChange} type="text" />
                     </label>

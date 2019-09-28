@@ -19,7 +19,7 @@ class Action extends React.Component {
         let name = e.target.name
         this.setState({ [name]: e.target.value}, () => {
             this.props.hoistData(this.props.num, {
-                order: this.state.order,
+                order: Number(this.state.order),
                 type: this.state.type,
                 description: this.state.description
             })
@@ -31,7 +31,7 @@ class Action extends React.Component {
             <fieldset id={`panel${this.props.panel}-character${this.props.character}-action${this.props.num}`} className="action">
                 <legend>Action</legend>
                 <label>Order: 
-                    <input name="order" value={this.state.order} onChange={this.handleChange} type="text" />
+                    <input name="order" value={this.state.order} onChange={this.handleChange} type="number" />
                 </label>
                 <label>Type: 
                     <input name="type" value={this.state.type} onChange={this.handleChange} type="text" />

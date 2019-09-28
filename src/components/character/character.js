@@ -56,7 +56,7 @@ class Character extends React.Component {
         let name = e.target.name
         this.setState({ [name]: e.target.value}, () => {
             this.props.hoistData(this.props.num, {
-                character: this.state.character,
+                name: this.state.name,
                 form: this.state.form,
                 description: this.state.description,
                 actions: this.actionsData
