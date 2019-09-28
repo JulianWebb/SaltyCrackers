@@ -19,7 +19,7 @@ class FormBase extends React.Component {
 
         this.addPanel = this.addPanel.bind(this);
         this.removePanel = this.removePanel.bind(this);
-        this.upwards = this.upwards.bind(this);
+        this.hoistData = this.hoistData.bind(this);
         this.updateTranscript = this.updateTranscript.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
@@ -43,7 +43,7 @@ class FormBase extends React.Component {
         }
     }
 
-    upwards(num, data) {
+    hoistData(num, data) {
         this.panelsData[num] = data;
     }
 
@@ -57,17 +57,18 @@ class FormBase extends React.Component {
 
     handleChange(e) {
         let name = e.target.name
-        this.setState({ [name]: e.target.value})
-        this.props.updateTranscript({
-            title: this.state.title,
-            date: this.state.date,
-            panels: this.panelsData
+        this.setState({ [name]: e.target.value}, () => {
+            this.props.updateTranscript({
+                title: this.state.title,
+                date: this.state.date,
+                panels: this.panelsData
+            })
         })
     }
 
     render() {
         return (
-            <form>
+            <form onChange={this.handleChange}>
                 <fieldset id="transcript" className="transcript">
                     <legend>Transcript: </legend>
                     <label>Title: 
@@ -78,7 +79,7 @@ class FormBase extends React.Component {
                     </label>
                     <div id={`panels`} className="panels">
                     {this.state.panels.map(panel => {
-                        return (<Panel num={panel.num} upwards={this.upwards} />);
+                        return (<Panel num={panel.num} hoistData={this.hoistData} />);
                     })}
                     </div>
                     <div id={`controls`} className="controls">

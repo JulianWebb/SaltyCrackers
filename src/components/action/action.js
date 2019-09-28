@@ -17,11 +17,12 @@ class Action extends React.Component {
 
     handleChange(e) {
         let name = e.target.name
-        this.setState({ [name]: e.target.value})
-        this.props.upwards(this.props.num, {
-            order: this.state.order,
-            type: this.state.type,
-            description: this.state.description
+        this.setState({ [name]: e.target.value}, () => {
+            this.props.hoistData(this.props.num, {
+                order: this.state.order,
+                type: this.state.type,
+                description: this.state.description
+            })
         })
     }
 
